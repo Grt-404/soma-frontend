@@ -80,7 +80,7 @@ function handleFileUpload() {
 
         processing.style.display = 'block';
 
-        fetch(`${backendBaseURL}/upload`, {
+        fetch(`${backendBaseURL}/analyze`, {
   method: 'POST',
   body: formData,
 })
