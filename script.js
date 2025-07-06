@@ -174,3 +174,7 @@ function analyzeAnother() {
         block: 'start'
     });
 }
+window.addEventListener('load', () => {
+  console.log("JS Loaded ✅");
+  console.log("fileInput:", document.getElementById('fileInput'));
+});
