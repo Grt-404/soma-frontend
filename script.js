@@ -28,8 +28,7 @@ window.addEventListener('load', () => {
 });
 
 // Upload logic
-const backendBaseURL = "https://soma-backend-s1as.onrender.com".replace(/\/$/, '');
- // Update this if backend URL changes
+const backendBaseURL = "https://soma-backend-s1as.onrender.com";
 const uploadArea = document.getElementById('uploadArea');
 const fileInput = document.getElementById('fileInput');
 const processing = document.getElementById('processing');
@@ -61,7 +60,7 @@ function handleFileUpload() {
     if (fileInput.files.length > 0) {
         const file = fileInput.files[0];
         const formData = new FormData();
-        formData.append('file', file);
+        formData.append('image', file); // ✅ Match Flask backend
 
         sessionStorage.setItem('isProcessing', 'true');
         uploadArea.style.display = 'none';
@@ -81,13 +80,19 @@ function handleFileUpload() {
         processing.style.display = 'block';
 
         fetch(`${backendBaseURL}/analyze`, {
-  method: 'POST',
-  body: formData,
-})
-
+            method: 'POST',
+            body: formData,
+        })
         .then(res => res.json())
         .then(data => {
             console.log("Upload success:", data);
+
+            const results = document.getElementById('results');
+            if (!results) {
+                console.error("❌ 'results' element not found in DOM");
+                return;
+            }
+
             results.style.display = 'block';
             initializeMap();
             scrollToResults();
@@ -158,11 +163,13 @@ window.addEventListener('load', () => {
 
     if (wasProcessing === 'true' && previewImg && previewImg.complete) {
         sessionStorage.removeItem('isProcessing');
-        document.getElementById('results').style.display = 'block';
+        const results = document.getElementById('results');
+        if (results) results.style.display = 'block';
         initializeMap();
         scrollToResults();
     } else {
-        document.getElementById('results').style.display = 'none';
+        const results = document.getElementById('results');
+        if (results) results.style.display = 'none';
     }
 });
 
@@ -176,7 +183,3 @@ function analyzeAnother() {
         block: 'start'
     });
 }
-window.addEventListener('load', () => {
-  console.log("JS Loaded ✅");
-  console.log("fileInput:", document.getElementById('fileInput'));
-});
