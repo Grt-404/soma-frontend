@@ -81,9 +81,10 @@ function handleFileUpload() {
         processing.style.display = 'block';
 
         fetch(`${backendBaseURL}/upload`, {
-            method: 'POST',
-            body: formData,
-        })
+  method: 'POST',
+  body: formData,
+})
+
         .then(res => res.json())
         .then(data => {
             console.log("Upload success:", data);
