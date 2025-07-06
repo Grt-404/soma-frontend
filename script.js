@@ -28,7 +28,7 @@ window.addEventListener('load', () => {
 });
 
 // Upload logic
-const backendBaseURL = "https://soma-backend.onrender.com"; // Update this if backend URL changes
+const backendBaseURL = "https://soma-backend-s1as.onrender.com/"; // Update this if backend URL changes
 const uploadArea = document.getElementById('uploadArea');
 const fileInput = document.getElementById('fileInput');
 const processing = document.getElementById('processing');
