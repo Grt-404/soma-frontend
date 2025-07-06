@@ -28,9 +28,9 @@ window.addEventListener('load', () => {
 });
 
 // Upload logic
+const backendBaseURL = "https://soma-backend.onrender.com"; // Update this if backend URL changes
 const uploadArea = document.getElementById('uploadArea');
 const fileInput = document.getElementById('fileInput');
-const uploadForm = document.getElementById('uploadForm');
 const processing = document.getElementById('processing');
 const results = document.getElementById('results');
 const uploadCompleteText = document.getElementById('uploadCompleteText');
@@ -58,22 +58,42 @@ fileInput.addEventListener('change', handleFileUpload);
 
 function handleFileUpload() {
     if (fileInput.files.length > 0) {
-        const fileName = fileInput.files[0].name;
+        const file = fileInput.files[0];
+        const formData = new FormData();
+        formData.append('file', file);
+
         sessionStorage.setItem('isProcessing', 'true');
         uploadArea.style.display = 'none';
+
         uploadCompleteText.innerHTML = `
             <div style="background: rgba(6, 214, 160, 0.1); border: 1px solid var(--accent-tertiary); border-radius: 12px; padding: 1rem; margin-top: 1rem;">
                 <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
                     <span>✅</span>
-                    <span style="font-weight: 600;">Uploaded: ${fileName}</span>
+                    <span style="font-weight: 600;">Uploaded: ${file.name}</span>
                 </div>
                 <div style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-secondary);">
                     Processing your lunar image...
                 </div>
             </div>
         `;
+
         processing.style.display = 'block';
-        uploadForm.submit();
+
+        fetch(`${backendBaseURL}/upload`, {
+            method: 'POST',
+            body: formData,
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log("Upload success:", data);
+            results.style.display = 'block';
+            initializeMap();
+            scrollToResults();
+        })
+        .catch(err => {
+            console.error("Upload failed:", err);
+            processing.innerHTML = '<p style="color: red;">Failed to process image. Try again.</p>';
+        });
     }
 }
 
@@ -153,4 +173,4 @@ function analyzeAnother() {
         behavior: 'smooth',
         block: 'start'
     });
-} 
+}
