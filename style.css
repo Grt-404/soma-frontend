@@ -1,0 +1,72 @@
+/* === CSS VARIABLES === */
+:root {
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #1a1a2e;
+    --bg-card: #16213e;
+    --text-primary: #ffffff;
+    --text-secondary: #b8c5d1;
+    --accent-primary: #4c9eff;
+    --accent-secondary: #7c3aed;
+    --accent-tertiary: #06d6a0;
+    --border-color: #2a2a40;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --gradient-cosmic: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-aurora: linear-gradient(135deg, #06d6a0 0%, #4c9eff 50%, #7c3aed 100%);
+}
+
+[data-theme="light"] {
+    --bg-primary: #f8fafc;
+    --bg-secondary: #ffffff;
+    --bg-card: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --accent-primary: #3b82f6;
+    --accent-secondary: #8b5cf6;
+    --accent-tertiary: #10b981;
+    --border-color: #e2e8f0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* === GLOBAL RESET === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: all 0.3s ease;
+    overflow-x: hidden;
+}
+
+/* === CTA BUTTON UPDATE === */
+.cta-button {
+    margin-top: 4rem;
+    background: var(--gradient-aurora);
+    color: white;
+    border: none;
+    padding: 1.2rem 3rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(76, 158, 255, 0.3);
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(76, 158, 255, 0.4);
+}
+
+.cta-button:active {
+    transform: translateY(-1px);
+}

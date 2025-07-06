@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOMA - Moon Boulder & Landslide Detection</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+    <!-- Cosmic Background -->
+    <div class="cosmic-bg">
+        <div class="stars"></div>
+        <div class="stars"></div>
+        <div class="stars"></div>
+        <div class="stars"></div>
+        <div class="stars"></div>
+        <div class="stars"></div>
+        <div class="stars"></div>
+        <div class="meteor"></div>
+        <div class="meteor"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">SOMA</div>
+            <button id="themeToggle" class="theme-toggle">🌙 Toggle Theme</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1 class="hero-title">Moon Boulder & Landslide Detection</h1>
+            <p class="hero-subtitle">Upload lunar imagery and let SOMA detect boulders, landslides, and hazardous
+                regions with advanced AI.</p>
+
+            <div class="hero-features">
+                <div class="hero-feature" style="--delay: 0s">
+                    <span class="hero-feature-icon">🪨</span>
+                    <div class="hero-feature-title">Boulder Detection</div>
+                    <div class="hero-feature-desc">Identifies rock fragments and clusters from OHRC & TMC imagery.</div>
+                </div>
+                <div class="hero-feature" style="--delay: 0.2s">
+                    <span class="hero-feature-icon">🏔️</span>
+                    <div class="hero-feature-title">Landslide Mapping</div>
+                    <div class="hero-feature-desc">Analyzes slope instability zones using terrain + optical fusion.
+                    </div>
+                </div>
+                <div class="hero-feature" style="--delay: 0.4s">
+                    <span class="hero-feature-icon">🌗</span>
+                    <div class="hero-feature-title">Lunar Risk Heatmap</div>
+                    <div class="hero-feature-desc">Creates a geospatial heatmap of high-risk landing or exploration
+                        areas.</div>
+                </div>
+            </div>
+
+            <div class="hero-cta">
+                <a href="#uploadSection" class="cta-button">Start Detection 🚀</a>
+            </div>
+        </section>
+
+        <!-- Upload Section -->
+        <section id="uploadSection" class="card">
+            <h2 class="card-title">Upload Lunar Image</h2>
+            <div id="uploadArea" class="upload-area">
+                <div class="upload-icon">📤</div>
+                <div class="upload-text">Drag & drop your lunar image (TMC/OHRC) here or use the button below</div>
+                <input type="file" id="fileInput" class="file-input" accept="image/*,.tif">
+                <button id="fileBrowseBtn" class="upload-btn">Browse File</button>
+            </div>
+
+            <div id="fileInfo" class="file-selected-info">
+                <div class="file-info">
+                    <div class="file-details">
+                        <div class="file-name" id="fileName">filename.tif</div>
+                        <div class="file-size" id="fileSize">0.0 MB</div>
+                    </div>
+                    <button id="changeFileBtn" class="change-file-btn">Change File</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Processing Loader -->
+        <section id="processingSection" class="processing">
+            <div class="spinner"></div>
+            <div>Analyzing image... Please wait ⏳</div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="resultsSection" class="demo-results">
+            <div class="card">
+                <h2 class="card-title">Detection Results</h2>
+                <div class="results-grid">
+                    <img src="preview.jpg" alt="Uploaded Preview" class="result-image" id="previewImage">
+                    <img src="output.jpg" alt="Detection Output" class="result-image" id="outputImage">
+                </div>
+
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: red;"></div> Boulder
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: yellow;"></div> Landslide
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: orange;"></div> Risk Zones
+                    </div>
+                </div>
+
+                <div class="stats-container" id="statsDisplay">Stats will be displayed here...</div>
+
+                <div class="map-container" id="mapContainer">[Interactive Heatmap]</div>
+
+                <div class="download-section">
+                    <a id="downloadReport" class="download-btn" download>📄 Download Report</a>
+                    <a id="downloadOverlay" class="download-btn" download>🖼️ Download Overlay</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Image Preview Modal -->
+    <div id="imgModal" class="modal">
+        <span class="close" id="closeModal">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">SOMA</div>
+        <div>© 2025 Lunar Intelligence | Made with 🌕 by Team RGIPT</div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>
